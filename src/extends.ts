@@ -2,6 +2,10 @@ class Dept{
     name?: string;
 }
 
+class Tech extends Dept{
+
+}
+
 /**
  * extends creates a rigid meta type 
  */
@@ -15,3 +19,4 @@ function processOnlyDeptExtends<T extends Dept>(dept: T) {
 
 // processOnlyDeptExtends("Hi");
 processOnlyDeptExtends({name: "Ashish"});
+processOnlyDeptExtends(new Tech());

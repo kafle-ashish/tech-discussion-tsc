@@ -1,3 +1,6 @@
+/**
+ * Hint: Class method overrides in OOP.
+ */
 function flatten(value: Record<any, any>): string;
 function flatten(value: number): number;
 function flatten(value: boolean): string;

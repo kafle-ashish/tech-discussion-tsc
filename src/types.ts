@@ -38,3 +38,37 @@ type DobProfile = DobDetails & Profile;
  * Which one is object and which one is not?
  * Hint: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null
  */
+
+const SOME_CONST = {
+    NAME: "ASHISH",
+    EMAIL: "SOMEEMAIL",
+    // let's say 100 more fields.
+    // Fields might be added.
+    // Inteface maintainance can be cumbersome.
+} as const;
+// Why are we using as const?
+
+type ConstType =  typeof SOME_CONST;
+type ConstKeys = keyof ConstType;
+
+// We might have some constants in our codebase.
+// Let's say we have a function that takes only key of the constant
+function processConst(constKey:unknown){
+    // How to we fix this?
+    console.log(SOME_CONST[constKey])
+}
+
+// function processConst(constKey:ConstKeys){
+//     // Fixed
+//     console.log(SOME_CONST[constKey])
+// }
+
+// We might need only values of SOME_CONST
+type ConstValues = typeof SOME_CONST[ConstKeys]
+
+function processConstValues(constKey:ConstValues){
+    // How to we fix this?
+    if(constKey === "ASHISH") {
+
+    }
+}
