@@ -47,6 +47,14 @@ const SOME_CONST = {
     // Inteface maintainance can be cumbersome.
 } as const;
 // Why are we using as const?
+// as const makes the object readonly
+// The const keyword ensures that no reassignment to the variable can happen, 
+// and a strict type of only that literal is guaranteed.
+// A const assertion tells the compiler to infer the narrowest or most specific type it can for an expression
+
+// const TEST = {TEST: "TEST"};
+// TEST.TEST = "hi";
+// SOME_CONST.NAME = ""
 
 type ConstType =  typeof SOME_CONST;
 type ConstKeys = keyof ConstType;
