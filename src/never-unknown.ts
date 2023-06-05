@@ -6,51 +6,51 @@ function flattenUnknown(value: number): number;
 function flattenUnknown(value: boolean): string;
 function flattenUnknown(value: any): string;
 
-function flattenUnknown(value: unknown) {
-    switch(typeof value) {
-        case "boolean":
-            return `${value}`
-        case "object":
-            return Object.keys(value).reduce(
-                (acc, current) => {
-                  acc += `${current} : ${value[current]} `
-                  return acc;
-                },
-                ""
-              )
-        case "function":
-            return (value as Function).name;
-        default:
-            return value;
-    }
-}
-
-// typeof null === ""
-
 // function flattenUnknown(value: unknown) {
-//     if (value === null) {
-//         throw new Error("Won't flatten null");
-//     }
-
-//     switch (typeof value) {
+//     switch(typeof value) {
 //         case "boolean":
 //             return `${value}`
 //         case "object":
 //             return Object.keys(value).reduce(
 //                 (acc, current) => {
-//                     acc += `${current} : ${value[(current as keyof typeof value)]} `
-//                     return acc;
+//                   acc += `${current} : ${value[current]} `
+//                   return acc;
 //                 },
 //                 ""
-//             )
+//               )
 //         case "function":
 //             return (value as Function).name;
-//         case "undefined":
-//             return "Are you using ts-ignore in some way?"
 //         default:
 //             return value;
 //     }
 // }
+
+// typeof null === "object"
+
+function flattenUnknown(value: unknown) {
+    if (value === null) {
+        throw new Error("Won't flatten null");
+    }
+
+    switch (typeof value) {
+        case "boolean":
+            return `${value}`
+        case "object":
+            return Object.keys(value).reduce(
+                (acc, current) => {
+                    acc += `${current} : ${value[(current as keyof typeof value)]} `
+                    return acc;
+                },
+                ""
+            )
+        case "function":
+            return (value as Function).name;
+        case "undefined":
+            return "Are you using ts-ignore in some way?"
+        default:
+            return value;
+    }
+}
 
 // Alt + up or down
 const unknownFlatNum = flattenUnknown(1);

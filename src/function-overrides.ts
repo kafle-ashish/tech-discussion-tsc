@@ -2,6 +2,7 @@
  * Hint: Class method overrides in OOP.
  */
 function flatten(value: Record<any, any>): string;
+function flatten(value: Record<any, any>, anotherValue?: number): string;
 function flatten(value: number): number;
 function flatten(value: boolean): string;
 function flatten(value: any): string;
@@ -29,3 +30,4 @@ const flatNum = flatten(1);
 const flatBoolean = flatten(true);
 const flatObject = flatten({ name: "Ashish" });
 const flatString = flatten("Ashish");
+const test = flatten({ name: "Ashish" }, 1)

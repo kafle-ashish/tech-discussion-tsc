@@ -14,9 +14,9 @@ interface User {
 // Update can be partial
 // We want to reuse User interface not create a new one.
 // We use utility type for this.
-function updateUser(user: Partial<User>){
-    // some logic
-}
+// function updateUser(user: Partial<User>){
+//     // some logic
+// }
 
 updateUser({age: 30})
 
@@ -35,3 +35,10 @@ updateUser({age: 30})
 //     // user.
 //     // some logic
 // }
+
+// function updateUser(user: Partial<Pick<User, "id" | "email" >>){
+//     // user.
+//     // some logic
+// }
+
+// updateUser({})

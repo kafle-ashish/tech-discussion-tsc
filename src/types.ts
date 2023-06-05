@@ -4,10 +4,21 @@
  */
 const record: Record<string | number | symbol, any> = {};
 
-interface Profile {
-    name?: string;
+
+
+type TProfile = {
+    name: string;
     email?: string;
 }
+
+type StrOrNumber = string | number | [];
+type Tuple = [string, number, Profile];
+
+class Profile implements TProfile {
+    constructor(readonly name: string) { }
+}
+
+
 
 type TNestedRecord = Record<number, Profile>;
 
@@ -17,21 +28,34 @@ type TNestedRecord = Record<number, Profile>;
  * Hint: Classes or known objects.
  */
 
-type ExtendedType = Profile[] | TNestedRecord[];
+const userProfile: IProfile = new Profile("Ashish");
 
+function process(profile: TProfile) { }
+
+process({ name: "Ashish", age: 25 } as TProfile)
 /**
  * 
  * Merging Types
  */
-interface DobDetails {
+
+interface IProfile {
+    name?: string;
+    email?: string;
+}
+interface IDobDetails {
     place: string;
     date: Date;
 }
 
-type DobProfile = DobDetails & Profile;
-// type DobProfile = DobDetails & Profile & { time: string };
+interface AddressDetails {
+    residency: string;
+    name: number;
+}
 
-// const dobProfile:DobProfile = {}
+type DobProfile = IDobDetails & IProfile & AddressDetails;
+// type DobProfile = IDobDetails & Profile & { time: string };
+
+// const dobProfile:DobProfile = {name: ""}
 
 /**
  * let's discuss null and undefined.
@@ -56,15 +80,15 @@ const SOME_CONST = {
 // TEST.TEST = "hi";
 // SOME_CONST.NAME = ""
 
-type ConstType =  typeof SOME_CONST;
+type ConstType = typeof SOME_CONST;
 type ConstKeys = keyof ConstType;
 
 // We might have some constants in our codebase.
 // Let's say we have a function that takes only key of the constant
-function processConst(constKey:unknown){
-    // How to we fix this?
-    console.log(SOME_CONST[constKey])
-}
+// function processConst(constKey:unknown){
+//     // How to we fix this?
+//     console.log(SOME_CONST[constKey])
+// }
 
 // function processConst(constKey:ConstKeys){
 //     // Fixed
@@ -74,9 +98,9 @@ function processConst(constKey:unknown){
 // We might need only values of SOME_CONST
 type ConstValues = typeof SOME_CONST[ConstKeys]
 
-function processConstValues(constKey:ConstValues){
+function processConstValues(constValues: ConstValues) {
     // How to we fix this?
-    if(constKey === "ASHISH") {
+    if (constValues === "ASHISH") {
 
     }
 }
